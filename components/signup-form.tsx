@@ -1,5 +1,6 @@
 "use client"
 
+import { useActionState } from "react"
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -17,7 +18,17 @@ import {
 import { Input } from "@/components/ui/input"
 import { signup, signInWithGoogle } from "@/app/auth/signup/actions"
 
+function ErrorMessage({ message }: { message: string }) {
+  return (
+    <div className="rounded-md bg-red-50 p-3 text-sm text-red-600">
+      {message}
+    </div>
+  )
+}
+
 export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
+  const [state, formAction, isPending] = useActionState(signup, {})
+
   return (
     <Card {...props}>
       <CardHeader>
@@ -27,8 +38,9 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <form>
+        <form action={formAction}>
           <FieldGroup>
+            {state?.error && <ErrorMessage message={state.message!} />}
             <Field>
               <FieldLabel htmlFor="name">Full Name</FieldLabel>
               <Input
@@ -74,8 +86,8 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
             </Field>
             <FieldGroup>
               <Field>
-                <Button formAction={signup} type="submit">
-                  Create Account
+                <Button type="submit" disabled={isPending}>
+                  {isPending ? "Creating account..." : "Create Account"}
                 </Button>
                 <Button
                   formAction={signInWithGoogle}

@@ -4,7 +4,15 @@ import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
 import { createClient } from "@/lib/supabase/server"
 
-export async function login(formData: FormData) {
+export type LoginState = {
+  error?: string
+  message?: string
+}
+
+export async function login(
+  prevState: LoginState,
+  formData: FormData
+): Promise<LoginState> {
   const supabase = await createClient()
 
   const data = {
@@ -15,7 +23,25 @@ export async function login(formData: FormData) {
   const { error } = await supabase.auth.signInWithPassword(data)
 
   if (error) {
-    redirect("/auth-code-error")
+    if (error.code === "email_not_confirmed") {
+      return {
+        error: "email_not_confirmed",
+        message:
+          "Please confirm your email address before signing in. Check your inbox for the confirmation link.",
+      }
+    }
+
+    if (error.code === "invalid_credentials") {
+      return {
+        error: "invalid_credentials",
+        message: "Invalid email or password. Please try again.",
+      }
+    }
+
+    return {
+      error: "unknown",
+      message: error.message || "Something went wrong. Please try again.",
+    }
   }
 
   revalidatePath("/", "layout")

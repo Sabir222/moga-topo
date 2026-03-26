@@ -1,5 +1,6 @@
 "use client"
 
+import { useActionState } from "react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
@@ -18,10 +19,28 @@ import {
 import { Input } from "@/components/ui/input"
 import { login, signInWithGoogle } from "@/app/auth/login/actions"
 
+function ErrorMessage({ message }: { message: string }) {
+  return (
+    <div className="rounded-md bg-red-50 p-3 text-sm text-red-600">
+      {message}
+    </div>
+  )
+}
+
+function InfoMessage({ message }: { message: string }) {
+  return (
+    <div className="rounded-md bg-blue-50 p-3 text-sm text-blue-600">
+      {message}
+    </div>
+  )
+}
+
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
+  const [state, formAction, isPending] = useActionState(login, {})
+
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
@@ -32,8 +51,14 @@ export function LoginForm({
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form>
+          <form action={formAction}>
             <FieldGroup>
+              {state?.error === "email_not_confirmed" && (
+                <InfoMessage message={state.message!} />
+              )}
+              {state?.error && state.error !== "email_not_confirmed" && (
+                <ErrorMessage message={state.message!} />
+              )}
               <Field>
                 <FieldLabel htmlFor="email">Email</FieldLabel>
                 <Input
@@ -57,8 +82,8 @@ export function LoginForm({
                 <Input id="password" name="password" type="password" required />
               </Field>
               <Field>
-                <Button formAction={login} type="submit">
-                  Login
+                <Button type="submit" disabled={isPending}>
+                  {isPending ? "Logging in..." : "Login"}
                 </Button>
                 <Button
                   formAction={signInWithGoogle}
