@@ -12,6 +12,7 @@ import {
 import {
   Field,
   FieldDescription,
+  FieldError,
   FieldGroup,
   FieldLabel,
 } from "@/components/ui/field"
@@ -48,8 +49,11 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
                 name="name"
                 type="text"
                 placeholder="John Doe"
-                required
+                aria-invalid={!!state?.errors?.name}
               />
+              {state?.errors?.name && (
+                <FieldError>{state.errors.name[0]}</FieldError>
+              )}
             </Field>
             <Field>
               <FieldLabel htmlFor="email">Email</FieldLabel>
@@ -58,8 +62,11 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
                 name="email"
                 type="email"
                 placeholder="m@example.com"
-                required
+                aria-invalid={!!state?.errors?.email}
               />
+              {state?.errors?.email && (
+                <FieldError>{state.errors.email[0]}</FieldError>
+              )}
               <FieldDescription>
                 We&apos;ll use this to contact you. We will not share your email
                 with anyone else.
@@ -67,7 +74,15 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
             </Field>
             <Field>
               <FieldLabel htmlFor="password">Password</FieldLabel>
-              <Input id="password" name="password" type="password" required />
+              <Input
+                id="password"
+                name="password"
+                type="password"
+                aria-invalid={!!state?.errors?.password}
+              />
+              {state?.errors?.password && (
+                <FieldError>{state.errors.password[0]}</FieldError>
+              )}
               <FieldDescription>
                 Must be at least 8 characters long.
               </FieldDescription>
@@ -80,8 +95,11 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
                 id="confirm-password"
                 name="confirmPassword"
                 type="password"
-                required
+                aria-invalid={!!state?.errors?.confirmPassword}
               />
+              {state?.errors?.confirmPassword && (
+                <FieldError>{state.errors.confirmPassword[0]}</FieldError>
+              )}
               <FieldDescription>Please confirm your password.</FieldDescription>
             </Field>
             <FieldGroup>

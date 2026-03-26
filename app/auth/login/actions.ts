@@ -3,8 +3,13 @@
 import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
 import { createClient } from "@/lib/supabase/server"
+import { loginSchema } from "@/lib/validations/auth"
 
 export type LoginState = {
+  errors?: {
+    email?: string[]
+    password?: string[]
+  }
   error?: string
   message?: string
 }
@@ -13,14 +18,21 @@ export async function login(
   prevState: LoginState,
   formData: FormData
 ): Promise<LoginState> {
-  const supabase = await createClient()
-
-  const data = {
+  const raw = {
     email: formData.get("email") as string,
     password: formData.get("password") as string,
   }
 
-  const { error } = await supabase.auth.signInWithPassword(data)
+  const result = loginSchema.safeParse(raw)
+
+  if (!result.success) {
+    return {
+      errors: result.error.flatten().fieldErrors,
+    }
+  }
+
+  const supabase = await createClient()
+  const { error } = await supabase.auth.signInWithPassword(result.data)
 
   if (error) {
     if (error.code === "email_not_confirmed") {

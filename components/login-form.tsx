@@ -13,6 +13,7 @@ import {
 import {
   Field,
   FieldDescription,
+  FieldError,
   FieldGroup,
   FieldLabel,
 } from "@/components/ui/field"
@@ -66,8 +67,11 @@ export function LoginForm({
                   name="email"
                   type="email"
                   placeholder="m@example.com"
-                  required
+                  aria-invalid={!!state?.errors?.email}
                 />
+                {state?.errors?.email && (
+                  <FieldError>{state.errors.email[0]}</FieldError>
+                )}
               </Field>
               <Field>
                 <div className="flex items-center">
@@ -79,7 +83,15 @@ export function LoginForm({
                     Forgot your password?
                   </a>
                 </div>
-                <Input id="password" name="password" type="password" required />
+                <Input
+                  id="password"
+                  name="password"
+                  type="password"
+                  aria-invalid={!!state?.errors?.password}
+                />
+                {state?.errors?.password && (
+                  <FieldError>{state.errors.password[0]}</FieldError>
+                )}
               </Field>
               <Field>
                 <Button type="submit" disabled={isPending}>
