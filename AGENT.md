@@ -218,10 +218,14 @@ Implementation:
 
 ### Git Rules
 
-- **NEVER push or merge to master** unless the user explicitly asks
+- **NEVER commit** without asking the user first
+- **NEVER push** without explicit user approval
+- **NEVER merge to master** — always create a PR
 - Always create feature branches (`feat/`, `fix/`, `docs/`)
-- Commit locally is fine, but remote push requires user approval
-- When work is done, ask the user if they want to push/merge
+- When work is done:
+  1. Show the user what was changed (`git status`, `git diff`)
+  2. Ask if they want to commit
+  3. Ask if they want to push and create a PR
 
 ---
 
