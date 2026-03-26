@@ -1,6 +1,8 @@
 "use client"
 
 import { useActionState } from "react"
+import { useTranslations } from "next-intl"
+import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
@@ -18,7 +20,7 @@ import {
   FieldLabel,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
-import { login, signInWithGoogle } from "@/app/auth/login/actions"
+import { login, signInWithGoogle } from "@/app/[locale]/auth/login/actions"
 
 function ErrorMessage({ message }: { message: string }) {
   return (
@@ -41,15 +43,14 @@ export function LoginForm({
   ...props
 }: React.ComponentProps<"div">) {
   const [state, formAction, isPending] = useActionState(login, {})
+  const t = useTranslations("Auth")
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
         <CardHeader>
-          <CardTitle>Login to your account</CardTitle>
-          <CardDescription>
-            Enter your email below to login to your account
-          </CardDescription>
+          <CardTitle>{t("loginTitle")}</CardTitle>
+          <CardDescription>{t("loginDescription")}</CardDescription>
         </CardHeader>
         <CardContent>
           <form action={formAction}>
@@ -61,7 +62,7 @@ export function LoginForm({
                 <ErrorMessage message={state.message!} />
               )}
               <Field>
-                <FieldLabel htmlFor="email">Email</FieldLabel>
+                <FieldLabel htmlFor="email">{t("email")}</FieldLabel>
                 <Input
                   id="email"
                   name="email"
@@ -75,13 +76,13 @@ export function LoginForm({
               </Field>
               <Field>
                 <div className="flex items-center">
-                  <FieldLabel htmlFor="password">Password</FieldLabel>
-                  <a
+                  <FieldLabel htmlFor="password">{t("password")}</FieldLabel>
+                  <Link
                     href="#"
                     className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
                   >
-                    Forgot your password?
-                  </a>
+                    {t("forgotPassword")}
+                  </Link>
                 </div>
                 <Input
                   id="password"
@@ -95,20 +96,16 @@ export function LoginForm({
               </Field>
               <Field>
                 <Button type="submit" disabled={isPending}>
-                  {isPending ? "Logging in..." : "Login"}
+                  {isPending ? t("loggingIn") : t("loginButton")}
                 </Button>
-                <Button
-                  formAction={signInWithGoogle}
-                  variant="outline"
-                  type="button"
-                >
-                  Login with Google
+                <Button formAction={signInWithGoogle} variant="outline">
+                  {t("loginWithGoogle")}
                 </Button>
                 <FieldDescription className="text-center">
-                  Don&apos;t have an account?{" "}
-                  <a href="/auth/signup" className="underline">
-                    Sign up
-                  </a>
+                  {t("noAccount")}{" "}
+                  <Link href="/ar/auth/signup" className="underline">
+                    {t("signUp")}
+                  </Link>
                 </FieldDescription>
               </Field>
             </FieldGroup>

@@ -2,28 +2,35 @@
 
 import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
+import { getTranslations } from "next-intl/server"
 import { createClient } from "@/lib/supabase/server"
-import { loginSchema } from "@/lib/validations/auth"
+import { signupSchema } from "@/lib/validations/auth"
 
-export type LoginState = {
+export type SignupState = {
   errors?: {
+    name?: string[]
     email?: string[]
     password?: string[]
+    confirmPassword?: string[]
   }
   error?: string
   message?: string
 }
 
-export async function login(
-  prevState: LoginState,
+export async function signup(
+  prevState: SignupState,
   formData: FormData
-): Promise<LoginState> {
+): Promise<SignupState> {
+  const t = await getTranslations("Errors")
+
   const raw = {
+    name: formData.get("name") as string,
     email: formData.get("email") as string,
     password: formData.get("password") as string,
+    confirmPassword: formData.get("confirmPassword") as string,
   }
 
-  const result = loginSchema.safeParse(raw)
+  const result = signupSchema.safeParse(raw)
 
   if (!result.success) {
     return {
@@ -32,27 +39,27 @@ export async function login(
   }
 
   const supabase = await createClient()
-  const { error } = await supabase.auth.signInWithPassword(result.data)
+  const { error } = await supabase.auth.signUp({
+    email: result.data.email,
+    password: result.data.password,
+    options: {
+      data: {
+        full_name: result.data.name,
+      },
+    },
+  })
 
   if (error) {
-    if (error.code === "email_not_confirmed") {
+    if (error.code === "user_already_exists") {
       return {
-        error: "email_not_confirmed",
-        message:
-          "Please confirm your email address before signing in. Check your inbox for the confirmation link.",
-      }
-    }
-
-    if (error.code === "invalid_credentials") {
-      return {
-        error: "invalid_credentials",
-        message: "Invalid email or password. Please try again.",
+        error: "user_already_exists",
+        message: t("userAlreadyExists"),
       }
     }
 
     return {
       error: "unknown",
-      message: error.message || "Something went wrong. Please try again.",
+      message: t("somethingWrong"),
     }
   }
 

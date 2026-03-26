@@ -40,7 +40,15 @@ export async function updateSession(request: NextRequest) {
   const { data } = await supabase.auth.getClaims()
   const user = data?.claims
 
-  // Public paths that don't require authentication
+  // Extract locale from pathname (e.g., /en/auth/login -> en)
+  const pathname = request.nextUrl.pathname
+  const localeMatch = pathname.match(/^\/([a-z]{2})(\/|$)/)
+  const localePrefix = localeMatch ? `/${localeMatch[1]}` : "/ar" // default to ar
+  const pathWithoutLocale = localeMatch
+    ? pathname.replace(/^\/[a-z]{2}/, "") || "/"
+    : pathname
+
+  // Public paths that don't require authentication (without locale prefix)
   const publicPaths = [
     "/",
     "/about",
@@ -51,13 +59,12 @@ export async function updateSession(request: NextRequest) {
   ]
   const isPublicPath = publicPaths.some(
     (path) =>
-      request.nextUrl.pathname === path ||
-      request.nextUrl.pathname.startsWith(path + "/")
+      pathWithoutLocale === path || pathWithoutLocale.startsWith(path + "/")
   )
 
   if (!user && !isPublicPath) {
     const url = request.nextUrl.clone()
-    url.pathname = "/auth/login"
+    url.pathname = `${localePrefix}/auth/login`
     return NextResponse.redirect(url)
   }
 

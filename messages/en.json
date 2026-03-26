@@ -1,0 +1,62 @@
+{
+  "Auth": {
+    "loginTitle": "Login to your account",
+    "loginDescription": "Enter your email below to login to your account",
+    "email": "Email",
+    "password": "Password",
+    "forgotPassword": "Forgot your password?",
+    "loginButton": "Login",
+    "loggingIn": "Logging in...",
+    "loginWithGoogle": "Login with Google",
+    "noAccount": "Don't have an account?",
+    "signUp": "Sign up",
+    "signUpTitle": "Create an account",
+    "signUpDescription": "Enter your information below to create your account",
+    "fullName": "Full Name",
+    "confirmPassword": "Confirm Password",
+    "emailHint": "We'll use this to contact you. We will not share your email with anyone else.",
+    "passwordHint": "Must be at least 8 characters long.",
+    "confirmHint": "Please confirm your password.",
+    "createAccount": "Create Account",
+    "creatingAccount": "Creating account...",
+    "signUpWithGoogle": "Sign up with Google",
+    "haveAccount": "Already have an account?",
+    "signIn": "Sign in"
+  },
+  "Errors": {
+    "invalidEmail": "Please enter a valid email address",
+    "passwordRequired": "Password is required",
+    "passwordTooShort": "Password must be at least 8 characters",
+    "passwordsDontMatch": "Passwords do not match",
+    "nameTooShort": "Name must be at least 2 characters",
+    "emailNotConfirmed": "Please confirm your email address before signing in. Check your inbox for the confirmation link.",
+    "invalidCredentials": "Invalid email or password. Please try again.",
+    "userAlreadyExists": "An account with this email already exists. Please sign in instead.",
+    "somethingWrong": "Something went wrong. Please try again."
+  },
+  "Dashboard": {
+    "title": "Dashboard",
+    "signOut": "Sign out",
+    "welcome": "Welcome",
+    "userId": "User ID",
+    "provider": "Provider",
+    "lastSignIn": "Last sign in",
+    "yourRequests": "Your Requests",
+    "noRequests": "No requests yet. Start by creating a new land measurement request."
+  },
+  "AuthConfirmed": {
+    "title": "Email Confirmed",
+    "description": "Your email has been successfully verified.",
+    "goToLogin": "Go to Login"
+  },
+  "AuthError": {
+    "title": "Authentication Error",
+    "description": "Sorry, something went wrong during authentication.",
+    "backToLogin": "Back to login"
+  },
+  "Home": {
+    "title": "Topography Services",
+    "description": "Professional land measurement and surveying services.",
+    "getStarted": "Get Started"
+  }
+}
