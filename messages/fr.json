@@ -1,0 +1,62 @@
+{
+  "Auth": {
+    "loginTitle": "Connectez-vous à votre compte",
+    "loginDescription": "Entrez votre email ci-dessous pour vous connecter",
+    "email": "Email",
+    "password": "Mot de passe",
+    "forgotPassword": "Mot de passe oublié?",
+    "loginButton": "Connexion",
+    "loggingIn": "Connexion en cours...",
+    "loginWithGoogle": "Connexion avec Google",
+    "noAccount": "Vous n'avez pas de compte?",
+    "signUp": "S'inscrire",
+    "signUpTitle": "Créer un compte",
+    "signUpDescription": "Entrez vos informations ci-dessous pour créer votre compte",
+    "fullName": "Nom complet",
+    "confirmPassword": "Confirmer le mot de passe",
+    "emailHint": "Nous utiliserons cela pour vous contacter. Nous ne partagerons pas votre email avec d'autres.",
+    "passwordHint": "Doit contenir au moins 8 caractères.",
+    "confirmHint": "Veuillez confirmer votre mot de passe.",
+    "createAccount": "Créer un compte",
+    "creatingAccount": "Création du compte...",
+    "signUpWithGoogle": "S'inscrire avec Google",
+    "haveAccount": "Vous avez déjà un compte?",
+    "signIn": "Se connecter"
+  },
+  "Errors": {
+    "invalidEmail": "Veuillez entrer une adresse email valide",
+    "passwordRequired": "Le mot de passe est requis",
+    "passwordTooShort": "Le mot de passe doit contenir au moins 8 caractères",
+    "passwordsDontMatch": "Les mots de passe ne correspondent pas",
+    "nameTooShort": "Le nom doit contenir au moins 2 caractères",
+    "emailNotConfirmed": "Veuillez confirmer votre adresse email avant de vous connecter. Vérifiez votre boîte de réception pour le lien de confirmation.",
+    "invalidCredentials": "Email ou mot de passe invalide. Veuillez réessayer.",
+    "userAlreadyExists": "Un compte avec cet email existe déjà. Veuillez vous connecter.",
+    "somethingWrong": "Une erreur s'est produite. Veuillez réessayer."
+  },
+  "Dashboard": {
+    "title": "Tableau de bord",
+    "signOut": "Déconnexion",
+    "welcome": "Bienvenue",
+    "userId": "ID utilisateur",
+    "provider": "Fournisseur",
+    "lastSignIn": "Dernière connexion",
+    "yourRequests": "Vos demandes",
+    "noRequests": "Aucune demande pour le moment. Commencez par créer une nouvelle demande de mesure de terrain."
+  },
+  "AuthConfirmed": {
+    "title": "Email confirmé",
+    "description": "Votre email a été vérifié avec succès.",
+    "goToLogin": "Aller à la connexion"
+  },
+  "AuthError": {
+    "title": "Erreur d'authentification",
+    "description": "Désolé, une erreur s'est produite lors de l'authentification.",
+    "backToLogin": "Retour à la connexion"
+  },
+  "Home": {
+    "title": "Services Topographiques",
+    "description": "Services professionnels de mesure et d'arpentage.",
+    "getStarted": "Commencer"
+  }
+}

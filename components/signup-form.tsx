@@ -1,6 +1,8 @@
 "use client"
 
 import { useActionState } from "react"
+import { useTranslations } from "next-intl"
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -17,7 +19,7 @@ import {
   FieldLabel,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
-import { signup, signInWithGoogle } from "@/app/auth/signup/actions"
+import { signup, signInWithGoogle } from "@/app/[locale]/auth/signup/actions"
 
 function ErrorMessage({ message }: { message: string }) {
   return (
@@ -29,21 +31,20 @@ function ErrorMessage({ message }: { message: string }) {
 
 export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
   const [state, formAction, isPending] = useActionState(signup, {})
+  const t = useTranslations("Auth")
 
   return (
     <Card {...props}>
       <CardHeader>
-        <CardTitle>Create an account</CardTitle>
-        <CardDescription>
-          Enter your information below to create your account
-        </CardDescription>
+        <CardTitle>{t("signUpTitle")}</CardTitle>
+        <CardDescription>{t("signUpDescription")}</CardDescription>
       </CardHeader>
       <CardContent>
         <form action={formAction}>
           <FieldGroup>
             {state?.error && <ErrorMessage message={state.message!} />}
             <Field>
-              <FieldLabel htmlFor="name">Full Name</FieldLabel>
+              <FieldLabel htmlFor="name">{t("fullName")}</FieldLabel>
               <Input
                 id="name"
                 name="name"
@@ -56,7 +57,7 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
               )}
             </Field>
             <Field>
-              <FieldLabel htmlFor="email">Email</FieldLabel>
+              <FieldLabel htmlFor="email">{t("email")}</FieldLabel>
               <Input
                 id="email"
                 name="email"
@@ -67,13 +68,10 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
               {state?.errors?.email && (
                 <FieldError>{state.errors.email[0]}</FieldError>
               )}
-              <FieldDescription>
-                We&apos;ll use this to contact you. We will not share your email
-                with anyone else.
-              </FieldDescription>
+              <FieldDescription>{t("emailHint")}</FieldDescription>
             </Field>
             <Field>
-              <FieldLabel htmlFor="password">Password</FieldLabel>
+              <FieldLabel htmlFor="password">{t("password")}</FieldLabel>
               <Input
                 id="password"
                 name="password"
@@ -83,13 +81,11 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
               {state?.errors?.password && (
                 <FieldError>{state.errors.password[0]}</FieldError>
               )}
-              <FieldDescription>
-                Must be at least 8 characters long.
-              </FieldDescription>
+              <FieldDescription>{t("passwordHint")}</FieldDescription>
             </Field>
             <Field>
               <FieldLabel htmlFor="confirm-password">
-                Confirm Password
+                {t("confirmPassword")}
               </FieldLabel>
               <Input
                 id="confirm-password"
@@ -100,25 +96,21 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
               {state?.errors?.confirmPassword && (
                 <FieldError>{state.errors.confirmPassword[0]}</FieldError>
               )}
-              <FieldDescription>Please confirm your password.</FieldDescription>
+              <FieldDescription>{t("confirmHint")}</FieldDescription>
             </Field>
             <FieldGroup>
               <Field>
                 <Button type="submit" disabled={isPending}>
-                  {isPending ? "Creating account..." : "Create Account"}
+                  {isPending ? t("creatingAccount") : t("createAccount")}
                 </Button>
-                <Button
-                  formAction={signInWithGoogle}
-                  variant="outline"
-                  type="button"
-                >
-                  Sign up with Google
+                <Button formAction={signInWithGoogle} variant="outline">
+                  {t("signUpWithGoogle")}
                 </Button>
                 <FieldDescription className="px-6 text-center">
-                  Already have an account?{" "}
-                  <a href="/auth/login" className="underline">
-                    Sign in
-                  </a>
+                  {t("haveAccount")}{" "}
+                  <Link href="/ar/auth/login" className="underline">
+                    {t("signIn")}
+                  </Link>
                 </FieldDescription>
               </Field>
             </FieldGroup>

@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { getTranslations } from "next-intl/server"
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -9,22 +10,22 @@ import {
 } from "@/components/ui/card"
 import { Field, FieldGroup } from "@/components/ui/field"
 
-export default function ConfirmedPage() {
+export default async function ConfirmedPage() {
+  const t = await getTranslations("AuthConfirmed")
+
   return (
     <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10">
       <div className="w-full max-w-sm">
         <Card>
           <CardHeader>
-            <CardTitle>Email Confirmed</CardTitle>
-            <CardDescription>
-              Your email has been successfully verified.
-            </CardDescription>
+            <CardTitle>{t("title")}</CardTitle>
+            <CardDescription>{t("description")}</CardDescription>
           </CardHeader>
           <CardContent>
             <FieldGroup>
               <Field>
                 <Button asChild className="w-full">
-                  <Link href="/auth/login">Go to Login</Link>
+                  <Link href="/ar/auth/login">{t("goToLogin")}</Link>
                 </Button>
               </Field>
             </FieldGroup>
