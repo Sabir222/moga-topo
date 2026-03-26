@@ -216,6 +216,15 @@ Implementation:
 
 ---
 
+### Git Rules
+
+- **NEVER push or merge to master** unless the user explicitly asks
+- Always create feature branches (`feat/`, `fix/`, `docs/`)
+- Commit locally is fine, but remote push requires user approval
+- When work is done, ask the user if they want to push/merge
+
+---
+
 ### Map Rules
 
 - Always use Leaflet (not Mapbox)
