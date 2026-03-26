@@ -30,7 +30,10 @@ pnpm-debug.log*
 
 # env files
 .env*.local
+.env
 
+#
+.opencode/
 # typescript
 *.tsbuildinfo
 next-env.d.ts
