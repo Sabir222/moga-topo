@@ -2,7 +2,7 @@
 
 import { useActionState } from "react"
 import { useTranslations } from "next-intl"
-import Link from "next/link"
+import { Link } from "@/lib/i18n/navigation"
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -108,7 +108,7 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
                 </Button>
                 <FieldDescription className="px-6 text-center">
                   {t("haveAccount")}{" "}
-                  <Link href="/ar/auth/login" className="underline">
+                  <Link href="/auth/login" className="underline">
                     {t("signIn")}
                   </Link>
                 </FieldDescription>

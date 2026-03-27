@@ -1,60 +1,57 @@
-import { createClient } from "@/lib/supabase/server"
 import { getTranslations } from "next-intl/server"
 import { db } from "@/lib/db"
-import { requests } from "@/drizzle/schema"
-import { eq, count, and } from "drizzle-orm"
+import { requests, profiles } from "@/drizzle/schema"
+import { count, eq } from "drizzle-orm"
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import {
   IconListDetails,
   IconClock,
   IconCircleCheck,
+  IconUsers,
 } from "@tabler/icons-react"
 
-export default async function ClientDashboardPage() {
-  const tAdmin = await getTranslations("Admin")
-  const supabase = await createClient()
+export default async function AdminPage() {
+  const t = await getTranslations("Admin")
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
-
-  const totalRequests = await db
-    .select({ count: count() })
-    .from(requests)
-    .where(eq(requests.userId, user!.id))
-
+  // Get stats
+  const totalRequests = await db.select({ count: count() }).from(requests)
   const pendingRequests = await db
     .select({ count: count() })
     .from(requests)
-    .where(and(eq(requests.userId, user!.id), eq(requests.status, "pending")))
-
+    .where(eq(requests.status, "pending"))
   const completedRequests = await db
     .select({ count: count() })
     .from(requests)
-    .where(and(eq(requests.userId, user!.id), eq(requests.status, "completed")))
+    .where(eq(requests.status, "completed"))
+  const totalUsers = await db.select({ count: count() }).from(profiles)
 
   const stats = [
     {
-      title: tAdmin("stats.totalRequests"),
+      title: t("stats.totalRequests"),
       value: totalRequests[0]?.count ?? 0,
       icon: IconListDetails,
     },
     {
-      title: tAdmin("stats.pendingRequests"),
+      title: t("stats.pendingRequests"),
       value: pendingRequests[0]?.count ?? 0,
       icon: IconClock,
     },
     {
-      title: tAdmin("stats.completedRequests"),
+      title: t("stats.completedRequests"),
       value: completedRequests[0]?.count ?? 0,
       icon: IconCircleCheck,
+    },
+    {
+      title: t("stats.totalUsers"),
+      value: totalUsers[0]?.count ?? 0,
+      icon: IconUsers,
     },
   ]
 
   return (
     <div className="px-4 lg:px-6">
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         {stats.map((stat) => (
           <Card key={stat.title}>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">

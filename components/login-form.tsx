@@ -2,7 +2,7 @@
 
 import { useActionState } from "react"
 import { useTranslations } from "next-intl"
-import Link from "next/link"
+import { Link } from "@/lib/i18n/navigation"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
@@ -103,7 +103,7 @@ export function LoginForm({
                 </Button>
                 <FieldDescription className="text-center">
                   {t("noAccount")}{" "}
-                  <Link href="/ar/auth/signup" className="underline">
+                  <Link href="/auth/signup" className="underline">
                     {t("signUp")}
                   </Link>
                 </FieldDescription>

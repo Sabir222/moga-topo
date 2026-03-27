@@ -1,8 +1,8 @@
 "use server"
 
 import { revalidatePath } from "next/cache"
-import { redirect } from "next/navigation"
-import { getTranslations } from "next-intl/server"
+import { redirect } from "@/lib/i18n/navigation"
+import { getTranslations, getLocale } from "next-intl/server"
 import { createClient } from "@/lib/supabase/server"
 import { signupSchema } from "@/lib/validations/auth"
 
@@ -22,6 +22,7 @@ export async function signup(
   formData: FormData
 ): Promise<SignupState> {
   const t = await getTranslations("Errors")
+  const locale = await getLocale()
 
   const raw = {
     name: formData.get("name") as string,
@@ -64,16 +65,19 @@ export async function signup(
   }
 
   revalidatePath("/", "layout")
-  redirect("/dashboard")
+  redirect({ href: "/dashboard", locale })
+  // TypeScript doesn't know redirect throws, so we need this
+  return prevState
 }
 
 export async function signInWithGoogle() {
   const supabase = await createClient()
+  const locale = await getLocale()
 
   const { error } = await supabase.auth.signInWithOAuth({
     provider: "google",
     options: {
-      redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`,
+      redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/${locale}/auth/callback`,
       queryParams: {
         access_type: "offline",
         prompt: "consent",
@@ -82,6 +86,6 @@ export async function signInWithGoogle() {
   })
 
   if (error) {
-    redirect("/auth-code-error")
+    redirect({ href: "/auth-code-error", locale })
   }
 }

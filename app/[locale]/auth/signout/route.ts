@@ -14,7 +14,13 @@ export async function POST(req: NextRequest) {
   }
 
   revalidatePath("/", "layout")
-  return NextResponse.redirect(new URL("/auth/login", req.url), {
+
+  // Extract locale from URL (e.g., /ar/auth/signout -> ar)
+  const url = new URL(req.url)
+  const localeMatch = url.pathname.match(/^\/([a-z]{2})\//)
+  const locale = localeMatch ? localeMatch[1] : "ar"
+
+  return NextResponse.redirect(new URL(`/${locale}/auth/login`, req.url), {
     status: 302,
   })
 }

@@ -44,6 +44,74 @@
     "yourRequests": "Your Requests",
     "noRequests": "No requests yet. Start by creating a new land measurement request."
   },
+  "ClientDashboard": {
+    "companyName": "Topography",
+    "nav": {
+      "dashboard": "Dashboard",
+      "myRequests": "My Requests"
+    }
+  },
+  "Admin": {
+    "title": "Admin Dashboard",
+    "companyName": "Topography",
+    "nav": {
+      "dashboard": "Dashboard",
+      "requests": "Requests",
+      "users": "Users",
+      "quota": "Quota",
+      "analytics": "Analytics"
+    },
+    "stats": {
+      "totalRequests": "Total Requests",
+      "pendingRequests": "Pending",
+      "completedRequests": "Completed",
+      "totalUsers": "Total Users"
+    },
+    "requests": {
+      "title": "Requests",
+      "description": "Manage land measurement requests",
+      "id": "ID",
+      "user": "User",
+      "status": "Status",
+      "area": "Area",
+      "created": "Created",
+      "actions": "Actions",
+      "view": "View",
+      "edit": "Edit",
+      "delete": "Delete",
+      "search": "Search requests...",
+      "noRequests": "No requests found",
+      "filterByStatus": "Filter by status"
+    },
+    "users": {
+      "title": "Users",
+      "description": "Manage user accounts",
+      "name": "Name",
+      "email": "Email",
+      "role": "Role",
+      "quota": "Quota",
+      "created": "Created",
+      "actions": "Actions",
+      "search": "Search users...",
+      "noUsers": "No users found",
+      "editQuota": "Edit Quota"
+    },
+    "quota": {
+      "title": "Quota Management",
+      "description": "Manage user request quotas",
+      "user": "User",
+      "used": "Used",
+      "limit": "Limit",
+      "remaining": "Remaining",
+      "noUsers": "No users found"
+    },
+    "analytics": {
+      "title": "Analytics",
+      "description": "View analytics and reports",
+      "comingSoon": "Analytics coming soon",
+      "comingSoonDescription": "We're working on bringing you detailed analytics and reports."
+    }
+  },
   "AuthConfirmed": {
     "title": "Email Confirmed",
     "description": "Your email has been successfully verified.",

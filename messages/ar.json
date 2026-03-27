@@ -44,6 +44,74 @@
     "yourRequests": "طلباتك",
     "noRequests": "لا توجد طلبات حتى الآن. ابدأ بإنشاء طلب قياس أرض جديد."
   },
+  "ClientDashboard": {
+    "companyName": "المساحة",
+    "nav": {
+      "dashboard": "لوحة التحكم",
+      "myRequests": "طلباتي"
+    }
+  },
+  "Admin": {
+    "title": "لوحة تحكم المسؤول",
+    "companyName": "المساحة",
+    "nav": {
+      "dashboard": "لوحة التحكم",
+      "requests": "الطلبات",
+      "users": "المستخدمين",
+      "quota": "الحصة",
+      "analytics": "التحليلات"
+    },
+    "stats": {
+      "totalRequests": "إجمالي الطلبات",
+      "pendingRequests": "قيد الانتظار",
+      "completedRequests": "مكتملة",
+      "totalUsers": "إجمالي المستخدمين"
+    },
+    "requests": {
+      "title": "الطلبات",
+      "description": "إدارة طلبات قياس الأراضي",
+      "id": "المعرف",
+      "user": "المستخدم",
+      "status": "الحالة",
+      "area": "المساحة",
+      "created": "تاريخ الإنشاء",
+      "actions": "الإجراءات",
+      "view": "عرض",
+      "edit": "تعديل",
+      "delete": "حذف",
+      "search": "البحث في الطلبات...",
+      "noRequests": "لا توجد طلبات",
+      "filterByStatus": "تصفية حسب الحالة"
+    },
+    "users": {
+      "title": "المستخدمين",
+      "description": "إدارة حسابات المستخدمين",
+      "name": "الاسم",
+      "email": "البريد الإلكتروني",
+      "role": "الدور",
+      "quota": "الحصة",
+      "created": "تاريخ الإنشاء",
+      "actions": "الإجراءات",
+      "search": "البحث عن المستخدمين...",
+      "noUsers": "لا يوجد مستخدمين",
+      "editQuota": "تعديل الحصة"
+    },
+    "quota": {
+      "title": "إدارة الحصص",
+      "description": "إدارة حصص طلبات المستخدمين",
+      "user": "المستخدم",
+      "used": "المستخدم",
+      "limit": "الحد",
+      "remaining": "المتبقي",
+      "noUsers": "لا يوجد مستخدمين"
+    },
+    "analytics": {
+      "title": "التحليلات",
+      "description": "عرض التحليلات والتقارير",
+      "comingSoon": "التحليلات قريباً",
+      "comingSoonDescription": "نعمل على تزويدك بتحليلات وتقارير مفصلة."
+    }
+  },
   "AuthConfirmed": {
     "title": "تم تأكيد البريد الإلكتروني",
     "description": "تم التحقق من بريدك الإلكتروني بنجاح.",

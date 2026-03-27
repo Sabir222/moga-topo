@@ -44,6 +44,74 @@
     "yourRequests": "Vos demandes",
     "noRequests": "Aucune demande pour le moment. Commencez par créer une nouvelle demande de mesure de terrain."
   },
+  "ClientDashboard": {
+    "companyName": "Topographie",
+    "nav": {
+      "dashboard": "Tableau de bord",
+      "myRequests": "Mes demandes"
+    }
+  },
+  "Admin": {
+    "title": "Tableau de bord Admin",
+    "companyName": "Topographie",
+    "nav": {
+      "dashboard": "Tableau de bord",
+      "requests": "Demandes",
+      "users": "Utilisateurs",
+      "quota": "Quota",
+      "analytics": "Analytique"
+    },
+    "stats": {
+      "totalRequests": "Total des demandes",
+      "pendingRequests": "En attente",
+      "completedRequests": "Terminées",
+      "totalUsers": "Total des utilisateurs"
+    },
+    "requests": {
+      "title": "Demandes",
+      "description": "Gérer les demandes de mesure de terrain",
+      "id": "ID",
+      "user": "Utilisateur",
+      "status": "Statut",
+      "area": "Superficie",
+      "created": "Créé",
+      "actions": "Actions",
+      "view": "Voir",
+      "edit": "Modifier",
+      "delete": "Supprimer",
+      "search": "Rechercher des demandes...",
+      "noRequests": "Aucune demande trouvée",
+      "filterByStatus": "Filtrer par statut"
+    },
+    "users": {
+      "title": "Utilisateurs",
+      "description": "Gérer les comptes utilisateurs",
+      "name": "Nom",
+      "email": "Email",
+      "role": "Rôle",
+      "quota": "Quota",
+      "created": "Créé",
+      "actions": "Actions",
+      "search": "Rechercher des utilisateurs...",
+      "noUsers": "Aucun utilisateur trouvé",
+      "editQuota": "Modifier le quota"
+    },
+    "quota": {
+      "title": "Gestion des quotas",
+      "description": "Gérer les quotas de demandes des utilisateurs",
+      "user": "Utilisateur",
+      "used": "Utilisé",
+      "limit": "Limite",
+      "remaining": "Restant",
+      "noUsers": "Aucun utilisateur trouvé"
+    },
+    "analytics": {
+      "title": "Analytique",
+      "description": "Voir les analyses et les rapports",
+      "comingSoon": "Analytique bientôt disponible",
+      "comingSoonDescription": "Nous travaillons pour vous apporter des analyses et des rapports détaillés."
+    }
+  },
   "AuthConfirmed": {
     "title": "Email confirmé",
     "description": "Votre email a été vérifié avec succès.",
