@@ -1,4 +1,4 @@
-import Link from "next/link"
+import { Link } from "@/lib/i18n/navigation"
 import { getTranslations } from "next-intl/server"
 import { Button } from "@/components/ui/button"
 import {
@@ -25,7 +25,7 @@ export default async function ConfirmedPage() {
             <FieldGroup>
               <Field>
                 <Button asChild className="w-full">
-                  <Link href="/ar/auth/login">{t("goToLogin")}</Link>
+                  <Link href="/auth/login">{t("goToLogin")}</Link>
                 </Button>
               </Field>
             </FieldGroup>

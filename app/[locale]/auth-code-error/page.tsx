@@ -1,4 +1,4 @@
-import Link from "next/link"
+import { Link } from "@/lib/i18n/navigation"
 import { getTranslations } from "next-intl/server"
 
 export default async function AuthCodeError() {
@@ -9,7 +9,7 @@ export default async function AuthCodeError() {
       <div className="space-y-4 text-center">
         <h1 className="text-2xl font-bold">{t("title")}</h1>
         <p className="text-gray-500">{t("description")}</p>
-        <Link href="/ar/auth/login" className="inline-block underline">
+        <Link href="/auth/login" className="inline-block underline">
           {t("backToLogin")}
         </Link>
       </div>

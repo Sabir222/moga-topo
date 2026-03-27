@@ -2,11 +2,16 @@ import { NextResponse } from "next/server"
 import { createClient } from "@/lib/supabase/server"
 
 export async function GET(request: Request) {
-  const { searchParams, origin } = new URL(request.url)
+  const { searchParams, origin, pathname } = new URL(request.url)
   const code = searchParams.get("code")
-  let next = searchParams.get("next") ?? "/dashboard"
+
+  // Extract locale from URL (e.g., /ar/auth/callback -> ar)
+  const localeMatch = pathname.match(/^\/([a-z]{2})\//)
+  const locale = localeMatch ? localeMatch[1] : "ar"
+
+  let next = searchParams.get("next") ?? `/${locale}/dashboard`
   if (!next.startsWith("/")) {
-    next = "/dashboard"
+    next = `/${locale}/dashboard`
   }
 
   if (code) {
@@ -25,5 +30,5 @@ export async function GET(request: Request) {
     }
   }
 
-  return NextResponse.redirect(`${origin}/auth-code-error`)
+  return NextResponse.redirect(`${origin}/${locale}/auth-code-error`)
 }
